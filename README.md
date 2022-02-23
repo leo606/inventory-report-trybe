@@ -214,21 +214,6 @@ Os arquivos **XML** seguem o seguinte modelo:
 ---
 
 
-## Instruções para entregar seu projeto:
-
-### ⚠️ Se você estiver fazendo esse projeto em duplas ⚠️
-
-É **essencial** que cada integrante da dupla tenha pelo menos 1 Push com o código completo do projeto. A nota de cada pessoa será computada individualmente, então o Push de uma pessoa não garante a nota da outra.
-
-Exemplo:
-- Estudante `Rafa` implementa 50% dos requisitos obrigatórios
-- Em seguida `Gabs`, sua dupla, complementa com os 50% restantes (atingindo 100% dos obrigatórios)
-  - Neste momento **SOMENTE** `Gabs` obteve aprovação.
-- `Rafa` faz um Push em sua branch, com o código completo (atingindo 100% dos obrigatórios) 
-  - Neste momento `Rafa` também obtém a aprovação
-
-Para mais detalhes de como deve ocorrer a dinâmica, [consulte este material](TODO:link/da/apresentação/feita/para/a/turma/na/explicação/do/projeto)
-
 ### ANTES DE COMEÇAR A DESENVOLVER:
 
 1. Clone o repositório

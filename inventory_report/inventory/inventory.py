@@ -1,5 +1,6 @@
 import csv
 import json
+import xml.etree.ElementTree as ET
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
 
@@ -28,7 +29,16 @@ class JSON_Reader:
 
 
 class XML_Reader:
-    pass
+    def read(path):
+        tree = ET.ElementTree(file=path)
+        root = tree.getroot()
+        file_data = []
+        for record in root:
+            tags = [item.tag for item in record]
+            texts = [item.text for item in record]
+            item_dict = {key: value for (key, value) in zip(tags, texts)}
+            file_data.append(item_dict)
+        return file_data
 
 
 class Serialize:
@@ -55,4 +65,4 @@ class Inventory:
             return Serialize.serialize(data_listed, type)
 
 
-print(Inventory.import_data("inventory_report/data/inventory.csv", "completo"))
+print(Inventory.import_data("inventory_report/data/inventory.xml", "completo"))

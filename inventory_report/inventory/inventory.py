@@ -5,7 +5,7 @@ from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
 
 
-class FileReader:
+class File_reader:
     def __init__(self, path, reader):
         self.path = path
         self.reader = reader
@@ -14,21 +14,21 @@ class FileReader:
         return self.reader.read(self.path)
 
 
-class CSV_Reader:
+class CSV_reader:
     def read(path):
         with open(path) as file:
             file_data = csv.DictReader(file, delimiter=",", quotechar='"')
             return list(file_data)
 
 
-class JSON_Reader:
+class JSON_reader:
     def read(path):
         with open(path) as file:
             file_data = json.load(file)
             return file_data
 
 
-class XML_Reader:
+class XML_reader:
     def read(path):
         tree = ET.ElementTree(file=path)
         root = tree.getroot()
@@ -54,15 +54,11 @@ class Inventory:
     def import_data(cls, path, type):
         file_extension = path.split(".")[-1].lower()
 
-        if file_extension == "csv":
-            data_listed = FileReader(path, CSV_Reader).read()
-            return Serialize.serialize(data_listed, type)
-        elif file_extension == "json":
-            data_listed = FileReader(path, JSON_Reader).read()
-            return Serialize.serialize(data_listed, type)
-        elif file_extension == "xml":
-            data_listed = FileReader(path, XML_Reader).read()
-            return Serialize.serialize(data_listed, type)
+        methods_by_extension = {
+            "csv": File_reader(path, CSV_reader),
+            "json": File_reader(path, JSON_reader),
+            "xml": File_reader(path, XML_reader),
+        }
 
-
-print(Inventory.import_data("inventory_report/data/inventory.xml", "completo"))
+        data_listed = methods_by_extension[file_extension].read()
+        return Serialize.serialize(data_listed, type)

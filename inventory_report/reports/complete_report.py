@@ -1,12 +1,13 @@
 from collections import Counter
-from simple_report import SimpleReport
+from inventory_report.reports.simple_report import SimpleReport
 
 
 class CompleteReport(SimpleReport):
     def get_stock_amount_by_company(products):
-        return Counter(
-            product["nome_da_empresa"] for product in products
-        ).most_common()
+        return (
+            Counter(product["nome_da_empresa"] for product in products)
+            .items()
+        )
 
     @classmethod
     def generate(cls, products):
@@ -24,8 +25,8 @@ class CompleteReport(SimpleReport):
             f"Data de fabricação mais antiga: {oldest_product_date}\n"
             f"Data de validade mais próxima: {nearest_expiration_date}\n"
             "Empresa com maior quantidade de "
-            f"produtos estocados: {greater_stock_amount_company}\n"
-            "\nProdutos estocados por empresa:\n"
+            f"produtos estocados: {greater_stock_amount_company}\n\n"
+            "Produtos estocados por empresa: \n"
             f"{company_name_and_stock}"
         )
 
@@ -70,4 +71,3 @@ stock = [
 ]
 
 print(CompleteReport.generate(stock))
-# report = CompleteReport.generate(stock)

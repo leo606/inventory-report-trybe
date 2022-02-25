@@ -42,11 +42,11 @@ class XML_reader:
 
 
 class Serialize:
-    def serialize(data_listed, type):
-        if type == "simples":
-            return SimpleReport.generate(data_listed)
-        elif type == "completo":
-            return CompleteReport.generate(data_listed)
+    serialize_types = {"simples": SimpleReport, "completo": CompleteReport}
+
+    @classmethod
+    def serialize(cls, data_listed, type):
+        return cls.serialize_types[type].generate(data_listed)
 
 
 class Inventory:

@@ -23,7 +23,3 @@ class InventoryRefactor(Iterable):
 
     def __iter__(self):
         return InventoryIterator(self.data)
-
-
-# iterator = iter(inventory)
-# first_item = next(iterator)

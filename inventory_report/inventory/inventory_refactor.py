@@ -20,6 +20,7 @@ class InventoryRefactor(Iterable):
     def import_data(self, path, type):
         data_listed = self.importer.import_data(path)
         self.data.extend(data_listed)
+        return Serialize.serialize(data_listed, type)
 
     def __iter__(self):
         return InventoryIterator(self.data)
